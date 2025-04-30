@@ -1,0 +1,5 @@
+<resources>
+    <string name="choosen_language">Spanish</string>
+    <string name="app_name">Aplicación de viajes de Delhi</string>
+    <string name="welcome">¡Bienvenido a la aplicación de viajes de Delhi!</string>
+</resources>

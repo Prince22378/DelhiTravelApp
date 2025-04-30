@@ -1,0 +1,5 @@
+<resources>
+    <string name="choosen_language">russian</string>
+    <string name="app_name">Приложение для путешествий по Дели</string>
+    <string name="welcome">Добро пожаловать в приложение Delhi Travel!</string>
+</resources>

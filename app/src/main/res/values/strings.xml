@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DelhiTravelApp</string>
+    <string name="welcome">Welcome to Delhi Travel App!</string>
+    <string name="choose_language">Choose a language</string>
+    <string name="search_languages">Search languages</string>
+    <string name="cont">Continue</string>
 </resources>

@@ -1,21 +1,84 @@
 [versions]
+activityComposeVersion = "1.10.1"
 agp = "8.8.2"
-kotlin = "2.0.0"
-coreKtx = "1.15.0"
+animationCore = "1.8.0"
+composeBomVersion = "2025.04.01"
+datastorePreferences = "1.1.5"
+foundationLayout = "1.8.0"
+foundationLayoutVersion = "1.8.0"
+kotlin = "2.0.21"
+coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
-composeBom = "2024.04.01"
+composeBom = "2025.04.01"
+coreKtxVersion = "1.16.0"
+gradle = "8.2.2"
+appcompat = "1.7.0"
+kotlinGradlePlugin = "1.9.0"
+kotlinxCoroutinesAndroid = "1.9.0"
+lifecycleViewmodelCompose = "2.8.7"
+loggingInterceptor = "5.0.0-alpha.11"
+material = "1.12.0"
+material3 = "1.3.2"
+material3Version = "1.3.2"
+materialIconsExtendedVersion = "1.4.3"
+materialVersion = "1.8.0"
+navigationCompose = "2.8.9"
+retrofit = "2.9.0"
+roomKtx = "2.7.1"
+roomRuntime = "2.7.1"
+ui = "1.6.0"
+material3Android = "1.3.2"
+media3CommonKtx = "1.6.1"
+roomCommonJvm = "2.7.1"
+compose = "1.8.0"
+activity = "1.7.2"
+bom            = "2024.04.01"
+androidxComposeBom = "2025.04.01"
+foundation = "1.8.0"
+constraintlayout = "2.2.1"
+materialIconsCore = "1.7.8"
+materialIconsExtended = "1.7.8"
+uiAndroid = "1.8.0"
+okhttp = "5.0.0-alpha.11"
+coroutines = "1.9.0"
+materialIcons = "1.7.8"
+roomCommon = "2.7.1"
+room = "2.7.1"
+navigationRuntimeKtx = "2.8.9"
+
 
 [libraries]
+androidx-animation-core = { module = "androidx.compose.animation:animation-core", version.ref = "animationCore" }
+androidx-compose-bom-v20240500 = { module = "androidx.compose:compose-bom", version.ref = "composeBomVersion" }
+androidx-activity-compose-v190 = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
+androidx-compose-material3-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-material3-material32 = { module = "androidx.compose.material3:material3", version.ref = "material3Version" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-ktx-v1131 = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+androidx-foundation = { module = "androidx.compose.foundation:foundation" }
+#noinspection SimilarGradleDependency
+androidx-foundation-layout = { module = "androidx.compose.foundation:foundation-layout" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+androidx-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-material-icons-extended-v143 = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtendedVersion" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+compose-bom-v20240500 = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBom" }
+foundation = { module = "androidx.compose.foundation:foundation", version.ref = "foundation" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+#noinspection SimilarGradleDependency
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+#noinspection SimilarGradleDependency
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
@@ -24,6 +87,41 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "materialIconsCore" }
+material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
+material3 = { module = "androidx.compose.material3:material3" }
+ui = { module = "androidx.compose.ui:ui" }
+ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }
+# Core and Lifecycle
+#noinspection SimilarGradleDependency
+androidx-lifecycle-viewmodel-compose-v261 = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+
+
+#androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+
+# Networking
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+# Coroutines
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+
+# Testing
+androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+androidx-core-ktx-v1120 = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }
+androidx-material = { module = "androidx.compose.material:material", version.ref = "materialVersion" }
+converter-gson = { module = "com.squareup.retrofit2:converter.gson", version.ref = "retrofit" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }
+androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
+androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3CommonKtx" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

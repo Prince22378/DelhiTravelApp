@@ -1,0 +1,5 @@
+<resources>
+    <string name="choosen_language">chinese</string>
+    <string name="app_name">德里旅游应用程序</string>
+    <string name="welcome">欢迎使用德里旅游应用程序！</string>
+</resources>
