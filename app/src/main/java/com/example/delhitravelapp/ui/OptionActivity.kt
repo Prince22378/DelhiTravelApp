@@ -332,137 +332,156 @@
 
 package com.example.delhitravelapp.ui
 
-// ← import your new screen here:
 import android.content.Intent
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.view.HapticFeedbackConstants
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.delhitravelapp.HomeActivity
 import com.example.delhitravelapp.R
 import com.example.delhitravelapp.ui.theme.DelhiTravelAppTheme
+import java.util.*
 
-class OptionActivity : ComponentActivity() {
+class OptionActivity : ComponentActivity(), TextToSpeech.OnInitListener {
+    private lateinit var tts: TextToSpeech
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        tts = TextToSpeech(this, this)
+
         setContent {
             DelhiTravelAppTheme {
                 OptionScreen(
+                    tts = tts,
                     onSelectNormal = {
-                        // launch the language selector instead of HomeActivity
+                        // launch the language selector
                         startActivity(Intent(this, LanguageSelectionActivity::class.java))
                         finish()
                     },
                     onSelectDisabled = {
-                        // TODO: launch your disabled-person flow
+                        // launch the disabled-person flow
+                        startActivity(Intent(this, HomeActivity::class.java))
+                        finish()
                     }
                 )
             }
         }
     }
+
+
+    override fun onInit(status: Int) {
+        if (status != TextToSpeech.SUCCESS) {
+            Toast.makeText(
+                this,
+                getString(R.string.tts_init_failed),
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+
+    override fun onDestroy() {
+        tts.shutdown()
+        super.onDestroy()
+    }
 }
+
 
 @Composable
 fun OptionScreen(
+    tts: TextToSpeech,
     onSelectNormal: () -> Unit,
     onSelectDisabled: () -> Unit
 ) {
+    val view = LocalView.current
+    val normalLabel = stringResource(R.string.option_normal)
+    val disabledLabel = stringResource(R.string.option_disabled)
+    val speakDisabled = stringResource(R.string.tts_disabled_selected)
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F5F5))
             .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
-            "Option Page",
-            style = MaterialTheme.typography.headlineSmall.copy(
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 1.2.sp
-            ),
+            text = stringResource(R.string.option_title),
+            style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.primary,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(16.dp))
-        Text(
-            "Choose an option below",
-            style = MaterialTheme.typography.titleMedium.copy(fontStyle = androidx.compose.ui.text.font.FontStyle.Italic),
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth().padding(bottom = 32.dp)
-        )
-
         Row(
-            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
         ) {
             OptionItem(
                 icon = R.drawable.normal_person1,
-                label = "Normal\nPeople",
+                label = normalLabel,
                 onClick = onSelectNormal
             )
             Spacer(Modifier.width(32.dp))
             OptionItem(
                 icon = R.drawable.disabled_person,
-                label = "Disabled\nPerson",
-                onClick = onSelectDisabled
+                label = disabledLabel,
+                onClick = {
+                    view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+                    tts.speak(speakDisabled, TextToSpeech.QUEUE_FLUSH, null, "disabled")
+                    onSelectDisabled()
+                }
             )
         }
     }
 }
 
+
 @Composable
 fun OptionItem(icon: Int, label: String, onClick: () -> Unit) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-    val scale by animateFloatAsState(if (isPressed) 0.95f else 1f)
-    val cardSize = 140.dp
+    val source = remember { MutableInteractionSource() }
+    val pressed by source.collectIsPressedAsState()
+    val scale by animateFloatAsState(if (pressed) 0.95f else 1f)
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .graphicsLayer { scaleX = scale; scaleY = scale }
-            .clickable(interactionSource = interactionSource, indication = null) { onClick() }
+            .clickable(interactionSource = source, indication = null) { onClick() }
     ) {
         Card(
-            modifier = Modifier.size(cardSize),
             shape = RoundedCornerShape(16.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White),
-            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+            modifier = Modifier.size(140.dp)
         ) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Image(
@@ -472,12 +491,10 @@ fun OptionItem(icon: Int, label: String, onClick: () -> Unit) {
                 )
             }
         }
-        Spacer(Modifier.height(12.dp))
+        Spacer(Modifier.height(8.dp))
         Text(
             text = label,
-            style = MaterialTheme.typography.bodyMedium.copy(fontSize = 16.sp, fontWeight = FontWeight.SemiBold),
-            color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.width(cardSize),
+            style = MaterialTheme.typography.bodyMedium.copy(fontSize = 16.sp),
             textAlign = TextAlign.Center
         )
     }

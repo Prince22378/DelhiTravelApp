@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import com.example.delhitravelapp.ui.OptionActivity
 import com.example.delhitravelapp.ui.theme.DelhiTravelAppTheme
 import kotlinx.coroutines.delay
+import androidx.compose.animation.core.tween
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,8 +73,8 @@ fun SplashScreen(onSplashComplete: () -> Unit) {
     ) {
         AnimatedVisibility(
             visible = isVisible,
-            enter = fadeIn(),
-            exit = fadeOut()
+            enter = fadeIn(animationSpec = tween(durationMillis = 200)),
+            exit = fadeOut(animationSpec = tween(durationMillis = 200))
         ) {
             Column(
                 modifier = Modifier

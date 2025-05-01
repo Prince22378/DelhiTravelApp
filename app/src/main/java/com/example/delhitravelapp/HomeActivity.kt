@@ -1,6 +1,8 @@
 package com.example.delhitravelapp
-
+import android.content.Intent
+import java.util.*
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,23 +31,73 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.platform.LocalContext
+import android.view.HapticFeedbackConstants
+
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalView
 import com.example.delhitravelapp.ui.theme.DelhiTravelAppTheme
 
-class HomeActivity : BaseActivity()  {
+class HomeActivity : BaseActivity(),TextToSpeech.OnInitListener  {
+    private lateinit var tts: TextToSpeech
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        tts = TextToSpeech(this, this)
+
         setContent {
             DelhiTravelAppTheme {
                 Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    HomeScreen()
+                    HomeScreen(tts)
                 }
             }
         }
     }
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts.setLanguage(Locale.getDefault())
+            when (result) {
+                TextToSpeech.LANG_MISSING_DATA -> android.widget.Toast.makeText(
+                    this,
+                    "TTS data missing: please install a TTS language pack.",
+                    android.widget.Toast.LENGTH_LONG
+                ).show()
+                TextToSpeech.LANG_NOT_SUPPORTED -> android.widget.Toast.makeText(
+                    this,
+                    "TTS language not supported on this device.",
+                    android.widget.Toast.LENGTH_LONG
+                ).show()
+                else -> {
+                    tts.speak(
+                        "Welcome to Delhi Travel App",
+                        TextToSpeech.QUEUE_FLUSH,
+                        null,
+                        "welcome"
+                    )
+                }
+            }
+        } else {
+            android.widget.Toast.makeText(
+                this,
+                "TTS initialization failed.",
+                android.widget.Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+    override fun onDestroy() {
+        tts.shutdown()
+        super.onDestroy()
+    }
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(tts : TextToSpeech) {
+    val context = LocalContext.current
+    val view = LocalView.current
+    val historyDesc = stringResource(R.string.travel_history)
+    val openingHistory = stringResource(R.string.opening_history)
     var startStation by remember { mutableStateOf("") }
     var endStation by remember { mutableStateOf("") }
 
@@ -106,7 +158,19 @@ fun HomeScreen() {
                 color = MaterialTheme.colorScheme.primary,
                 textDecoration = TextDecoration.Underline
             ),
-            modifier = Modifier.clickable { /* TODO: navigate to history */ }
+            modifier = Modifier
+                .semantics { contentDescription = historyDesc}
+                .clickable {
+                    view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+                    tts.speak(
+                        openingHistory,
+                        TextToSpeech.QUEUE_FLUSH,
+                        null,
+                        "history"
+                    )
+                    context.startActivity(Intent(context, HistoryActivity::class.java))
+                }
         )
     }
 }
+
