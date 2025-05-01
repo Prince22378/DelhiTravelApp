@@ -5,9 +5,10 @@ import android.content.Intent
 import android.icu.lang.UCharacter
 import android.icu.lang.UScript
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.view.HapticFeedbackConstants
+import android.widget.Toast
 import androidx.activity.compose.setContent
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -42,9 +43,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -56,119 +57,155 @@ import com.example.delhitravelapp.HomeActivity
 import com.example.delhitravelapp.R
 import com.example.delhitravelapp.ui.theme.DelhiTravelAppTheme
 import kotlinx.coroutines.delay
+import java.util.Locale
 import java.util.concurrent.atomic.AtomicLong
-
 
 // --- Data models ---
 data class Language(val native: String, val english: String)
 data class FallingChar(val id: Long, val char: String, val x: Float, val yStart: Float)
 
-class LanguageSelectionActivity : BaseActivity() {
+class LanguageSelectionActivity : BaseActivity(), TextToSpeech.OnInitListener {
+    private var ttsEnabled = false
+    private lateinit var tts: TextToSpeech
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // grab incoming flag
+        ttsEnabled = intent.getBooleanExtra("tts_enabled", false)
+        if (ttsEnabled) tts = TextToSpeech(this, this)
+
         setContent {
             DelhiTravelAppTheme {
                 Surface(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(MaterialTheme.colorScheme.background)
+                    modifier = Modifier.fillMaxSize(),
+                    color    = MaterialTheme.colorScheme.background
                 ) {
-                    LanguageSelectionScreen { chosen ->
-                        // map the chosen.english to a locale code
-                        val code = when (chosen.english.lowercase()) {
-                            "hindi", "हिन्दी"       -> "hi"
-                            "english"              -> "en"
-                            "spanish", "español"   -> "es"
-                            "french", "français"   -> "fr"
-                            "german", "deutsch"    -> "de"
-                            "chinese", "中文"       -> "zh"
-                            "japanese", "日本語"     -> "ja"
-                            "korean", "한국어"       -> "ko"
-                            "arabic", "العربية"     -> "ar"
-                            "russian", "русский"    -> "ru"
-                            "portuguese", "português" -> "pt"
-                            "urdu", "اردو"           -> "ur"
-                            else -> "en"
-                        }
-                        getSharedPreferences("settings", Context.MODE_PRIVATE)
-                            .edit()
-                            .putString("lang_code", code)
-                            .apply()
-
-                        startActivity(Intent(this, HomeActivity::class.java))
-                        finish()
-                    }
+                    LanguageSelectionScreen(
+                        onContinue = { chosen ->
+                            // persist lang_code
+                            val code = codeFor(chosen)
+                            getSharedPreferences("settings", Context.MODE_PRIVATE)
+                                .edit()
+                                .putString("lang_code", code)
+                                .apply()
+                            // forward flag + launch Home
+                            Intent(this, HomeActivity::class.java).also {
+                                it.putExtra("tts_enabled", ttsEnabled)
+                                startActivity(it)
+                            }
+                            finish()
+                        },
+                        tts        = if (ttsEnabled) tts else null,
+                        ttsEnabled = ttsEnabled
+                    )
                 }
             }
         }
+    }
+
+    override fun onInit(status: Int) {
+        if (ttsEnabled && status == TextToSpeech.SUCCESS) {
+            val prefs    = getSharedPreferences("settings", Context.MODE_PRIVATE)
+            val langCode = prefs.getString("lang_code", "en") ?: "en"
+            val result   = tts.setLanguage(Locale(langCode))
+            if (result == TextToSpeech.LANG_MISSING_DATA ||
+                result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                startActivity(Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA))
+            }
+        } else if (ttsEnabled) {
+            Toast.makeText(this, "TTS initialization failed", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun codeFor(lang: Language): String = when (lang.english.lowercase()) {
+        "hindi","हिन्दी"       -> "hi"
+        "english"              -> "en"
+        "spanish","español"    -> "es"
+        "french","français"    -> "fr"
+        "german","deutsch"     -> "de"
+        "chinese","中文"       -> "zh"
+        "japanese","日本語"     -> "ja"
+        "korean","한국어"       -> "ko"
+        "arabic","العربية"     -> "ar"
+        "russian","русский"    -> "ru"
+        "portuguese","português"-> "pt"
+        "urdu","اردو"           -> "ur"
+        else                   -> "en"
     }
 }
 
 @Composable
-fun LanguageSelectionScreen(onContinue: (Language) -> Unit) {
-    // 1) Languages
+fun LanguageSelectionScreen(
+    onContinue: (Language) -> Unit,
+    tts: TextToSpeech?,
+    ttsEnabled: Boolean
+) {
+    val view    = LocalView.current
+    val density = LocalDensity.current
+
+    // languages list
     val all = listOf(
-        Language("English",   "English"),
-        Language("हिन्दी",     "Hindi"),
-        Language("Español",   "Spanish"),
-        Language("Français",  "French"),
-        Language("Deutsch",   "German"),
-        Language("中文",       "Chinese"),
-        Language("日本語",     "Japanese"),
-        Language("한국어",     "Korean"),
-        Language("العربية",   "Arabic"),
-        Language("Русский",   "Russian"),
-        Language("Português", "Portuguese"),
-        Language("اردو",       "Urdu")
+        Language("English","English"),
+        Language("हिन्दी","Hindi"),
+        Language("Español","Spanish"),
+        Language("Français","French"),
+        Language("Deutsch","German"),
+        Language("中文","Chinese"),
+        Language("日本語","Japanese"),
+        Language("한국어","Korean"),
+        Language("العربية","Arabic"),
+        Language("Русский","Russian"),
+        Language("Português","Portuguese"),
+        Language("اردو","Urdu")
     )
     var selected by remember { mutableStateOf(all.first()) }
-
-    // 2) Search filter
-    var query by remember { mutableStateOf("") }
+    var query    by remember { mutableStateOf("") }
     val filtered = remember(query) {
         if (query.isBlank()) all
         else all.filter {
-            it.native.contains(query, ignoreCase = true) ||
-                    it.english.contains(query, ignoreCase = true)
+            it.native.contains(query, true) ||
+                    it.english.contains(query, true)
         }
     }
 
-    // 3) Prepare falling chars
+    // falling-char state
     val nextId       = remember { AtomicLong(0) }
     val fallingChars = remember { mutableStateListOf<FallingChar>() }
-
-    // ✂️ **PRE-COMPUTED** in Composable scope:
-    val alphabet = rememberAlphabetFor(selected)
-    val density  = LocalDensity.current
-    var heightPx by remember { mutableStateOf(0f) }
+    val alphabet     = rememberAlphabetFor(selected)
+    var heightPx     by remember { mutableStateOf(0f) }
 
     BoxWithConstraints(
         Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
             .pointerInput(selected) {
                 detectTapGestures { offset: Offset ->
-                    if (alphabet.isNotEmpty()) {
-                        fallingChars += FallingChar(
-                            id     = nextId.getAndIncrement(),
-                            char   = alphabet.random().toString(),
-                            x      = offset.x,
-                            yStart = offset.y
-                        )
-                    }
+                    // spawn falling char (no haptic here)
+                    fallingChars += FallingChar(
+                        id     = nextId.getAndIncrement(),
+                        char   = alphabet.random().toString(),
+                        x      = offset.x,
+                        yStart = offset.y
+                    )
                 }
             }
     ) {
+        // now maxHeight is available
         LaunchedEffect(maxHeight) {
             heightPx = with(density) { maxHeight.toPx() }
         }
         fallingChars.forEach { fc ->
-            FallingCharItem(fc, heightPx) {
-                fallingChars.remove(fc)
-            }
+            FallingCharItem(fc, heightPx) { fallingChars.remove(fc) }
         }
 
-        // 4) UI
-        Column(Modifier.fillMaxSize().padding(16.dp)) {
+        Column(
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Text(
                 text      = stringResource(R.string.choose_language),
                 style     = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
@@ -184,7 +221,6 @@ fun LanguageSelectionScreen(onContinue: (Language) -> Unit) {
                 shape         = RoundedCornerShape(50),
                 modifier      = Modifier.fillMaxWidth().height(56.dp)
             )
-
             Spacer(Modifier.height(16.dp))
 
             LazyVerticalGrid(
@@ -194,19 +230,58 @@ fun LanguageSelectionScreen(onContinue: (Language) -> Unit) {
                 modifier              = Modifier.weight(1f)
             ) {
                 items(filtered) { lang ->
-                    LanguageCard(
-                        lang       = lang,
-                        isSelected = lang == selected,
-                        onSelect   = { selected = lang }
-                    )
+                    Card(
+                        modifier = Modifier
+                            .size(100.dp)
+                            .pointerInput(lang) {
+                                detectTapGestures {
+                                    // subtle haptic on card tap
+                                    if (ttsEnabled) {
+                                        view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+                                    }
+                                    selected = lang
+                                    if (ttsEnabled) {
+                                        tts?.speak(
+                                            "You’ve selected ${lang.english}. To proceed further press Continue.",
+                                            TextToSpeech.QUEUE_FLUSH,
+                                            null,
+                                            "select"
+                                        )
+                                    }
+                                }
+                            },
+                        colors = CardDefaults.cardColors(
+                            containerColor = if (lang == selected)
+                                MaterialTheme.colorScheme.primary
+                            else Color(0xFFE0F7FA)
+                        ),
+                        shape = RoundedCornerShape(12.dp)
+                    ) {
+                        Column(
+                            Modifier
+                                .fillMaxSize()
+                                .padding(8.dp),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(lang.native, style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center)
+                            Text(lang.english, style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center)
+                        }
+                    }
                 }
             }
-
             Spacer(Modifier.height(16.dp))
 
             Button(
-                onClick = { onContinue(selected) },
-                modifier = Modifier.fillMaxWidth().height(48.dp)
+                onClick = {
+                    // subtle haptic on Continue
+                    if (ttsEnabled) {
+                        view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+                    }
+                    onContinue(selected)
+                },
+                modifier = Modifier.fillMaxWidth().height(48.dp),
+                shape    = RoundedCornerShape(24.dp)
             ) {
                 Text(stringResource(R.string.cont))
             }
@@ -221,58 +296,7 @@ fun rememberAlphabetFor(selected: Language): List<Char> {
     return remember(script) {
         (0x0000..0xFFFF).mapNotNull { cp ->
             if (UScript.getScript(cp) == script && UCharacter.isUAlphabetic(cp))
-                cp.toChar()
-            else null
-        }
-    }
-}
-
-@Composable
-fun LanguageCard(lang: Language, isSelected: Boolean, onSelect: () -> Unit) {
-    var pressed by remember { mutableStateOf(false) }
-    val scale by animateFloatAsState(
-        targetValue   = if (pressed) 0.95f else 1f,
-        animationSpec = tween(150)
-    )
-
-    Card(
-        modifier = Modifier
-            .size(100.dp)
-            .graphicsLayer { scaleX = scale; scaleY = scale }
-            .pointerInput(lang) {
-                detectTapGestures(
-                    onPress = {
-                        pressed = true
-                        try { awaitRelease() } finally { pressed = false }
-                    },
-                    onTap = { onSelect() }
-                )
-            },
-        shape      = RoundedCornerShape(12.dp),
-        colors     = CardDefaults.cardColors(
-            containerColor = if (isSelected)
-                MaterialTheme.colorScheme.primary
-            else Color(0xFFE0F7FA)
-        ),
-        elevation  = CardDefaults.cardElevation(defaultElevation = 6.dp)
-    ) {
-        Column(
-            modifier            = Modifier.fillMaxSize().padding(8.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text      = lang.native,
-                style     = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
-                textAlign = TextAlign.Center,
-                color     = if (isSelected) Color.White else MaterialTheme.colorScheme.onBackground
-            )
-            Text(
-                text      = lang.english,
-                style     = MaterialTheme.typography.bodySmall,
-                textAlign = TextAlign.Center,
-                color     = if (isSelected) Color.White else MaterialTheme.colorScheme.onBackground
-            )
+                cp.toChar() else null
         }
     }
 }
