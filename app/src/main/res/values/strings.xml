@@ -4,4 +4,11 @@
     <string name="choose_language">Choose a language</string>
     <string name="search_languages">Search languages</string>
     <string name="cont">Continue</string>
+    <string name="start_station">Select Start Station</string>
+    <string name="end_station">Select End Station</string>
+    <string name="show_routes">Show Routes</string>
+    <string name="travel_history">Travel History</string>
+
+
+
 </resources>

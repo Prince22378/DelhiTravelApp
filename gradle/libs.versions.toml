@@ -49,7 +49,7 @@ materialIcons = "1.7.8"
 roomCommon = "2.7.1"
 room = "2.7.1"
 navigationRuntimeKtx = "2.8.9"
-
+androidxFoundation = "1.8.0"
 
 [libraries]
 androidx-animation-core = { module = "androidx.compose.animation:animation-core", version.ref = "animationCore" }
@@ -121,7 +121,6 @@ gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }
 androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3CommonKtx" }
-
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

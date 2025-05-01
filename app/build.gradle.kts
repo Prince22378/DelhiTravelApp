@@ -201,5 +201,24 @@ dependencies {
     implementation(libs.androidx.material.icons.extended.v143)
     implementation(libs.androidx.datastore.preferences)
 
+// Core Compose
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.tooling.preview)
+    debugImplementation(libs.androidx.ui.tooling)
+
+// Material 3
+    implementation(libs.androidx.material3)
+
+// Material Icons (Core + Extended)
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
+
+// Foundation (LazyGrid, etc.)
+    implementation(libs.androidx.foundation)
+
+// Navigation, ViewModel, etc.
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
 }

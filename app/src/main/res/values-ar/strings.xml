@@ -2,4 +2,9 @@
     <string name="choosen_language">arabic</string>
     <string name="app_name">تطبيق السفر دلهي</string>
     <string name="welcome">مرحباً بكم في تطبيق Delhi Travel!</string>
+    <string name="start_station">حدد محطة البداية</string>
+    <string name="end_station">حدد محطة النهاية</string>
+    <string name="show_routes">عرض المسارات</string>
+    <string name="travel_history">تاريخ السفر</string>
+
 </resources>
