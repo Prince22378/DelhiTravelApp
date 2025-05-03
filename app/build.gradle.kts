@@ -3,7 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("org.jetbrains.kotlin.kapt")
-//    alias(libs.plugins.kotlin.kapt)
+////    alias(libs.plugins.kotlin.kapt)
+//    kotlin("kapt") // for Compose projects
 }
 
 android {
@@ -220,5 +221,12 @@ dependencies {
 // Navigation, ViewModel, etc.
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.room.runtime)  // :contentReference[oaicite:2]{index=2}:contentReference[oaicite:3]{index=3}
+    implementation(libs.androidx.room.ktx)      // :contentReference[oaicite:4]{index=4}:contentReference[oaicite:5]{index=5}
+
+    // No alias defined yet for the compiler, so use string literal:
+    kapt("androidx.room:room-compiler:${libs.versions.room.get()}")
+    // For Compose Material3 stable with ExposedDropdownMenu
+    implementation("androidx.compose.material3:material3:1.1.0-beta01")
 
 }

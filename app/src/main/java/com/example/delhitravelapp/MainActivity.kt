@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Canvas
@@ -29,69 +30,87 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.lifecycleScope
+import com.example.delhitravelapp.data.DatabaseModule
+import com.example.delhitravelapp.data.GtfsParser
 import com.example.delhitravelapp.ui.OptionActivity
 import com.example.delhitravelapp.ui.theme.DelhiTravelAppTheme
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import androidx.compose.animation.core.tween
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
+
+        // 1) Launch GTFS parsing on IO immediately
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                GtfsParser(
+                    this@MainActivity,
+                    DatabaseModule.provideStationRepo(this@MainActivity),
+                    DatabaseModule.provideRouteRepo(this@MainActivity),
+                    DatabaseModule.provideTripRepo(this@MainActivity),
+                    DatabaseModule.provideStopTimeRepo(this@MainActivity)
+                ).parseAll()
+            }
+        }
+
+        // 2) Show splash UI
         setContent {
             DelhiTravelAppTheme {
-                SplashScreen {
-//                    startActivity(Intent(this, HomeActivity::class.java))
-                    startActivity(Intent(this, OptionActivity::class.java))
-                    finish()
-                }
+                SplashScreen()
             }
+        }
+
+        // 3) Navigate after 3 seconds
+        lifecycleScope.launch {
+            delay(3000)
+            startActivity(Intent(this@MainActivity, OptionActivity::class.java))
+            finish()
         }
     }
 }
 
 @Composable
-fun SplashScreen(onSplashComplete: () -> Unit) {
-    val context = LocalContext.current
-    var isVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
-        isVisible = true
-        delay(3000)
-        onSplashComplete()
-    }
+fun SplashScreen() {
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { visible = true }
+
     Box(
-        modifier = Modifier
+        Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
         AnimatedVisibility(
-            visible = isVisible,
-            enter = fadeIn(animationSpec = tween(durationMillis = 200)),
-            exit = fadeOut(animationSpec = tween(durationMillis = 200))
+            visible = visible,
+            enter   = fadeIn(tween(durationMillis = 200)),
+            exit    = fadeOut(tween(durationMillis = 200))
         ) {
             Column(
-                modifier = Modifier
+                Modifier
                     .fillMaxSize()
                     .padding(16.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 MetroLogo()
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(Modifier.height(32.dp))
                 Text(
                     text = "Delhi Travel App",
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(Modifier.height(16.dp))
                 Text(
                     text = "Navigating with ease at your fingertips",
                     fontSize = 16.sp,
@@ -102,31 +121,36 @@ fun SplashScreen(onSplashComplete: () -> Unit) {
         }
     }
 }
-@Preview
+
 @Composable
 fun MetroLogo() {
     Box(
-        modifier = Modifier
+        Modifier
             .size(120.dp)
             .clip(CircleShape)
             .background(Color.Red),
         contentAlignment = Alignment.Center
     ) {
-        Canvas(modifier = Modifier.size(80.dp)) {
+        Canvas(Modifier.size(80.dp)) {
+            // white rounded square
             drawRoundRect(
-                color = Color.White,
+                color        = Color.White,
+                topLeft      = Offset.Zero,
+                size         = size,
                 cornerRadius = CornerRadius(8.dp.toPx())
             )
+            // red vertical
             drawLine(
-                color = Color.Red,
-                start = center.copy(y = 20f),
-                end = center.copy(y = size.height - 20f),
+                color       = Color.Red,
+                start       = center.copy(y = 20f),
+                end         = center.copy(y = size.height - 20f),
                 strokeWidth = 12f
             )
+            // red horizontal
             drawLine(
-                color = Color.Red,
-                start = center.copy(x = 20f),
-                end = center.copy(x = size.width - 20f),
+                color       = Color.Red,
+                start       = center.copy(x = 20f),
+                end         = center.copy(x = size.width - 20f),
                 strokeWidth = 12f
             )
         }
@@ -137,6 +161,6 @@ fun MetroLogo() {
 @Composable
 fun SplashScreenPreview() {
     DelhiTravelAppTheme {
-        SplashScreen(onSplashComplete = {})
+        SplashScreen()
     }
 }
