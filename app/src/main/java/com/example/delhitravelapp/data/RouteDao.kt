@@ -19,6 +19,9 @@ interface RouteDao {
     @Query("SELECT * FROM routes ORDER BY routeShortName")
     fun allRoutes(): Flow<List<RouteEntity>>
 
+    @Query("SELECT * FROM routes WHERE routeId IN(:ids)")
+    suspend fun getRoutesByIds(ids: List<String>): List<RouteEntity>
+
     @Query("DELETE FROM routes")
     suspend fun deleteAll()
 }

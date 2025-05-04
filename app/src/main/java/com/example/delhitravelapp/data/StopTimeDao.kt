@@ -17,6 +17,12 @@ interface StopTimeDao {
     @Query("SELECT * FROM stop_times ORDER BY tripId, stopSequence")
     suspend fun getAllStopTimesOrdered(): List<StopTimeEntity>
 
+    @Query("SELECT DISTINCT r.routeId FROM routes r"
+            + " JOIN trips t ON r.routeId=t.routeId"
+            + " JOIN stop_times st ON t.tripId=st.tripId"
+            + " WHERE st.stopId=:stopId")
+    suspend fun getRouteIdsForStop(stopId: String): List<String>
+
     @Query("DELETE FROM stop_times")
     suspend fun deleteAll()
 }

@@ -18,6 +18,9 @@ interface StationDao {
     @Query("SELECT * FROM stations WHERE stopName LIKE :query ORDER BY stopName")
     fun searchStations(query: String): Flow<List<StationEntity>>
 
+    @Query("SELECT * FROM stations ORDER BY stopName")
+    suspend fun getAllStations(): List<StationEntity>
+
     @Query("DELETE FROM stations")
     suspend fun deleteAll()
 }

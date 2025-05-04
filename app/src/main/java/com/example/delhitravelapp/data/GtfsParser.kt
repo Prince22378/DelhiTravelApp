@@ -3,6 +3,9 @@ package com.example.delhitravelapp.data
 import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import com.opencsv.CSVReader
+import kotlinx.coroutines.withContext
+import java.io.InputStreamReader
 
 class GtfsParser(
     private val ctx: Context,
@@ -22,7 +25,7 @@ class GtfsParser(
         parseStopTimes()
     }
 
-    private suspend fun parseStops() {
+    suspend fun parseStops() {
         ctx.assets.open("gfts/stops.txt").bufferedReader().useLines { lines ->
             lines.drop(1).forEach { ln ->
                 val cols = ln.split(",")
@@ -41,7 +44,7 @@ class GtfsParser(
         }
     }
 
-    private suspend fun parseRoutes() {
+    suspend fun parseRoutes() {
         ctx.assets.open("gfts/routes.txt").bufferedReader().useLines { lines ->
             lines.drop(1).forEach { ln ->
                 val cols = ln.split(",")
@@ -59,7 +62,7 @@ class GtfsParser(
         }
     }
 
-    private suspend fun parseTrips() {
+    suspend fun parseTrips() {
         ctx.assets.open("gfts/trips.txt").bufferedReader().useLines { lines ->
             lines.drop(1).forEach { ln ->
                 val cols = ln.split(",")
@@ -76,7 +79,7 @@ class GtfsParser(
         }
     }
 
-    private suspend fun parseStopTimes() {
+    suspend fun parseStopTimes() {
         ctx.assets.open("gfts/stop_times.txt").bufferedReader().useLines { lines ->
             lines.drop(1).forEach { ln ->
                 val cols = ln.split(",")
