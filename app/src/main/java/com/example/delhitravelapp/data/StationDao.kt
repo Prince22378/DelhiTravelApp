@@ -15,12 +15,17 @@ interface StationDao {
     @Query("SELECT * FROM stations WHERE stopId = :id LIMIT 1")
     suspend fun getById(id: String): StationEntity?
 
-    @Query("SELECT * FROM stations WHERE stopName LIKE :query ORDER BY stopName")
-    fun searchStations(query: String): Flow<List<StationEntity>>
+//    @Query("SELECT * FROM stations WHERE stopName LIKE :query ORDER BY stopName")
+//    fun searchStations(query: String): Flow<List<StationEntity>>
 
     @Query("SELECT * FROM stations ORDER BY stopName")
     suspend fun getAllStations(): List<StationEntity>
 
     @Query("DELETE FROM stations")
     suspend fun deleteAll()
+
+    // Use LIKE with % for partial matching anywhere in the name
+    @Query("SELECT * FROM stations WHERE stopName LIKE '%' || :query || '%' ORDER BY stopName")
+    fun searchStations(query: String): Flow<List<StationEntity>>
+
 }
