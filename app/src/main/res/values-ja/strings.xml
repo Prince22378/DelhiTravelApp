@@ -2,4 +2,7 @@
     <string name="choosen_language">Japanese</string>
     <string name="app_name">デリー旅行アプリ</string>
     <string name="welcome">デリー旅行アプリへようこそ！</string>
+    <string name="select_station">出発駅の選択</string>
+    <string name="startTyping">駅名を入力してください</string>
+    <string name="notfound">ステーションが見つかりません</string>
 </resources>

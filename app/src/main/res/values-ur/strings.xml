@@ -2,4 +2,7 @@
     <string name="choosen_language">Urdu</string>
     <string name="app_name">دہلی ٹریول ایپ</string>
     <string name="welcome">دہلی ٹریول ایپ میں خوش آمدید!</string>
+    <string name="select_station">شروع کرنے والے اسٹیشن کو منتخب کریں۔</string>
+    <string name="startTyping">اسٹیشن کا نام درج کریں۔</string>
+    <string name="notfound">اسٹیشن نہیں ملا</string>
 </resources>

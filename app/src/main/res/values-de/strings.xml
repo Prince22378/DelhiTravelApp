@@ -6,5 +6,8 @@
     <string name="end_station">Wählen Sie Endstation</string>
     <string name="show_routes">Routen anzeigen</string>
     <string name="travel_history">Reisegeschichte</string>
+    <string name="select_station">Wählen Sie Startstation</string>
+    <string name="startTyping">Geben Sie den Stationsnamen ein</string>
+    <string name="notfound">Sender nicht gefunden</string>
 
 </resources>

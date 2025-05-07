@@ -2,4 +2,7 @@
     <string name="choosen_language">portuguese</string>
     <string name="app_name">Aplicação de viagens para Delhi</string>
     <string name="welcome">Bem-vindo à aplicação Delhi Travel!</string>
+    <string name="select_station">Selecione a estação inicial</string>
+    <string name="startTyping">Digite o nome da estação</string>
+    <string name="notfound">Estação não encontrada</string>
 </resources>

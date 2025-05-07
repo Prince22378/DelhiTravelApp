@@ -7,4 +7,22 @@
     <string name="show_routes">عرض المسارات</string>
     <string name="travel_history">تاريخ السفر</string>
 
+    <string name="choose_language">اختر لغة</string>
+    <string name="search_languages">لغات البحث</string>
+    <string name="cont">يكمل</string>
+    <string name="no_history">لا يوجد سجل سفر متاح</string>
+    <string name="opening_history">فتح سجل السفر</string>
+    <string name="confirm_travel">تأكيد السفر</string>
+    <string name="tts_init_failed">فشل تهيئة TTS</string>
+    <string name="find_routes">البحث عن الطرق</string>
+
+
+    <!-- OptionActivity Strings -->
+    <string name="option_title">اختر خيارًا</string>
+    <string name="option_normal">الناس العاديين</string>
+    <string name="option_disabled">شخص معاق</string>
+    <string name="tts_disabled_selected">تم تحديد الوضع المعطل</string>
+    <string name="select_station">حدد محطة البداية</string>
+    <string name="startTyping">أدخل اسم المحطة</string>
+    <string name="notfound">لم يتم العثور على المحطة</string>
 </resources>

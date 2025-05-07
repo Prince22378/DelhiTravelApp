@@ -104,6 +104,7 @@ package com.example.delhitravelapp.data
 import android.content.Context
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
 class GtfsParser(
@@ -114,19 +115,38 @@ class GtfsParser(
     private val stopTimeRepo: StopTimeRepository
 ) {
     suspend fun parseAll() = withContext(Dispatchers.IO) {
-        // Clear existing data
-        stationRepo.deleteAll()
-        routeRepo.deleteAll()
-        tripRepo.deleteAll()
-        stopTimeRepo.deleteAll()
+        // Check if database is already loaded
+        val sharedPreferences = ctx.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val isDatabaseLoaded = sharedPreferences.getBoolean("isDatabaseLoaded", false)
 
-        parseStops()
-        parseStationsAdditional()
-        parseRoutes()
-        parseTrips()
-        parseStopTimes()
+        // If database is not loaded, proceed with the parsing
+        if (!isDatabaseLoaded) {
+            // Clear existing data (if necessary)
+            stationRepo.deleteAll()
+            routeRepo.deleteAll()
+            tripRepo.deleteAll()
+            stopTimeRepo.deleteAll()
 
-        Log.d("GtfsParser", "Parsing completed. Stations: ${stationRepo.getAllStations().size}, Routes: ${routeRepo.getAllRoutes().size}, Trips: ${tripRepo.getAllTrips().size}, StopTimes: ${stopTimeRepo.getAllStopTimes().size}")
+            // Run parsing in parallel using async
+            val stopsJob = async { parseStops() }
+            val routesJob = async { parseRoutes() }
+            val tripsJob = async { parseTrips() }
+            val stopTimesJob = async { parseStopTimes() }
+
+            // Wait for all parsing tasks to finish
+            stopsJob.await()
+            routesJob.await()
+            tripsJob.await()
+            stopTimesJob.await()
+
+            // Save the flag indicating database is loaded
+            sharedPreferences.edit().putBoolean("isDatabaseLoaded", true).apply()
+
+            Log.d("GtfsParser", "Parsing completed. Stations: ${stationRepo.getAllStations().size}, Routes: ${routeRepo.getAllRoutes().size}, Trips: ${tripRepo.getAllTrips().size}, StopTimes: ${stopTimeRepo.getAllStopTimes().size}")
+        } else {
+            // If already loaded, no need to parse again
+            Log.d("GtfsParser", "Database already loaded, skipping GTFS parsing.")
+        }
     }
 
     suspend fun parseStops() {

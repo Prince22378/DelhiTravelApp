@@ -12,10 +12,20 @@
     <string name="opening_history">Opening travel history</string>
     <string name="confirm_travel">Confirm Travel</string>
     <string name="tts_init_failed">TTS initialization failed</string>
+    <string name="find_routes">Find Routes</string>
+
 
     <!-- OptionActivity Strings -->
     <string name="option_title">Choose an option</string>
     <string name="option_normal">Normal People</string>
     <string name="option_disabled">Disabled Person</string>
     <string name="tts_disabled_selected">Disabled mode selected</string>
+    <string name="select_station">Select Starting Station</string>
+    <string name="startTyping">Enter Station Name</string>
+    <string name="notfound">Station Not Found</string>
+    <string name="endStation">Select End Station</string>
+    <string name="shortestRoute">Shortest Route</string>
+    <string name="minInt">Min Interchange</string>
+
+
 </resources>

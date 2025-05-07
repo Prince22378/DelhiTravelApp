@@ -6,5 +6,17 @@
     <string name="end_station">अंतिम स्टेशन चुनें</string>
     <string name="show_routes">मार्ग दिखाएँ</string>
     <string name="travel_history">ट्रैवेल हिस्ट्री</string>
+    <string name="select_station">आरंभिक स्टेशन का चयन करें</string>
+    <string name="startTyping">स्टेशन का नाम दर्ज करें</string>
+    <string name="notfound">स्टेशन नहीं मिला</string>
+
+    <string name="no_history">कोई यात्रा इतिहास उपलब्ध नहीं है</string>
+    <string name="opening_history">यात्रा इतिहास खुल रहा है</string>
+    <string name="find_routes">मार्ग खोजें</string>
+
+
+    <string name="endStation">अंतिम स्टेशन चुनें</string>
+    <string name="shortestRoute">सबसे छोटा मार्ग</string>
+    <string name="minInt">न्यूनतम इंटरचेंज</string>
 
 </resources>

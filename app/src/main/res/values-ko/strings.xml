@@ -2,4 +2,7 @@
     <string name="choosen_language">korean</string>
     <string name="app_name">델리 여행 앱</string>
     <string name="welcome">델리 여행 앱에 오신 것을 환영합니다!</string>
+    <string name="select_station">출발역 선택</string>
+    <string name="startTyping">역 이름을 입력하세요</string>
+    <string name="notfound">스테이션을 찾을 수 없음</string>
 </resources>

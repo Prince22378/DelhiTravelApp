@@ -89,6 +89,9 @@ class LanguageSelectionActivity : BaseActivity(), TextToSpeech.OnInitListener {
                                 .edit()
                                 .putString("lang_code", code)
                                 .apply()
+                            // Recreate the activity so it loads the new language
+                            recreate()  // Recreate the activity to apply the language change
+
                             // forward flag + launch Home
                             Intent(this, HomeActivity::class.java).also {
                                 it.putExtra("tts_enabled", ttsEnabled)

@@ -2,4 +2,7 @@
     <string name="choosen_language">russian</string>
     <string name="app_name">Приложение для путешествий по Дели</string>
     <string name="welcome">Добро пожаловать в приложение Delhi Travel!</string>
+    <string name="select_station">Выберите начальную станцию</string>
+    <string name="startTyping">Введите название станции</string>
+    <string name="notfound">Станция не найдена</string>
 </resources>

@@ -269,6 +269,7 @@
 package com.example.delhitravelapp
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.HapticFeedbackConstants
@@ -298,8 +299,14 @@ class HomeActivity : BaseActivity(), TextToSpeech.OnInitListener {
     private lateinit var tts: TextToSpeech
     private var ttsEnabled: Boolean = false
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Get the language code from Intent
+        val langCode = intent.getStringExtra("lang_code") ?: "en"
+        updateLanguage(langCode)
 
         ttsEnabled = intent.getBooleanExtra("tts_enabled", false)
         tts = TextToSpeech(this, this)
@@ -315,6 +322,15 @@ class HomeActivity : BaseActivity(), TextToSpeech.OnInitListener {
             }
         }
     }
+    private fun updateLanguage(langCode: String) {
+        val locale = Locale(langCode)
+        Locale.setDefault(locale)
+        val config = Configuration(resources.configuration).apply {
+            setLocale(locale)
+        }
+        createConfigurationContext(config)
+    }
+
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS && ttsEnabled) {
@@ -360,6 +376,7 @@ fun HomeScreen(tts: TextToSpeech, ttsEnabled: Boolean) {
     val historyDesc = stringResource(R.string.travel_history)
     val openingHistory = stringResource(R.string.opening_history)
 
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -384,7 +401,7 @@ fun HomeScreen(tts: TextToSpeech, ttsEnabled: Boolean) {
             shape = RoundedCornerShape(24.dp)
         ) {
             Text(
-                text = "Find Routes",
+                text = stringResource(R.string.find_routes),
                 fontSize = 16.sp,
                 color = Color.White
             )

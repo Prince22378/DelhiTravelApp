@@ -117,8 +117,11 @@
 /////////////////////////////////////
 package com.example.delhitravelapp.search
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -132,9 +135,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
+import com.example.delhitravelapp.R
 import com.example.delhitravelapp.RoutesActivity
 import com.example.delhitravelapp.data.AppDatabase
 import com.example.delhitravelapp.data.StationEntity
@@ -142,10 +147,14 @@ import com.example.delhitravelapp.data.StationRepository
 import com.example.delhitravelapp.ui.theme.DelhiTravelAppTheme
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.util.Locale
 
-class SearchActivity : ComponentActivity() {
+class SearchActivity : ComponentActivity(){
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val langCode = intent.getStringExtra("lang_code") ?: "en"  // Get the language code from Intent
+        updateLanguage(langCode)  // Apply locale change
         setContent {
             DelhiTravelAppTheme {
                 Surface(
@@ -157,6 +166,15 @@ class SearchActivity : ComponentActivity() {
             }
         }
     }
+    private fun updateLanguage(langCode: String) {
+        val locale = Locale(langCode)
+        Locale.setDefault(locale)
+        val config = Configuration(resources.configuration).apply {
+            setLocale(locale)
+        }
+        createConfigurationContext(config)
+    }
+
 }
 
 @Composable
@@ -174,6 +192,8 @@ fun SearchScreen() {
     var isEndSuggestionsVisible by remember { mutableStateOf(true) }
     var selectedStartStation by remember { mutableStateOf<StationEntity?>(null) }
     var selectedEndStation by remember { mutableStateOf<StationEntity?>(null) }
+    var isLoading by remember { mutableStateOf(false) } // Add loading state
+    var routeSummary by remember { mutableStateOf<String?>(null) } // Add route summary
 
     // Fetch suggestions for start station
     LaunchedEffect(startQuery) {
@@ -181,13 +201,13 @@ fun SearchScreen() {
             stationRepo.searchStations(startQuery).collectLatest { stations ->
                 startSuggestions = stations.take(5)
                 Log.d("SearchActivity", "Start suggestions updated: ${startSuggestions.map { it.stopName }}")
-                if (stations.none { it.stopName.equals(startQuery, ignoreCase = true) }) { ////////////////////////////////////// 3 lines added
+                if (stations.none { it.stopName.equals(startQuery, ignoreCase = true) }) {
                     selectedStartStation = null
                 }
             }
         } else {
             startSuggestions = emptyList()
-            selectedStartStation = null //////////////////////////////////////added
+            selectedStartStation = null
             Log.d("SearchActivity", "Start suggestions cleared")
         }
     }
@@ -198,13 +218,13 @@ fun SearchScreen() {
             stationRepo.searchStations(endQuery).collectLatest { stations ->
                 endSuggestions = stations.take(5)
                 Log.d("SearchActivity", "End suggestions updated: ${endSuggestions.map { it.stopName }}")
-                if (stations.none { it.stopName.equals(endQuery, ignoreCase = true) }) {///////////////////////////////////////////3 lines
+                if (stations.none { it.stopName.equals(endQuery, ignoreCase = true) }) {
                     selectedEndStation = null
                 }
             }
         } else {
             endSuggestions = emptyList()
-            selectedEndStation = null ////////////////////////
+            selectedEndStation = null
             Log.d("SearchActivity", "End suggestions cleared")
         }
     }
@@ -217,7 +237,7 @@ fun SearchScreen() {
     ) {
         // Start Station selection
         Text(
-            text = "Select Start Station",
+            text = stringResource(R.string.select_station),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(bottom = 4.dp)
         )
@@ -226,10 +246,10 @@ fun SearchScreen() {
             onValueChange = {
                 startQuery = it
                 isStartSuggestionsVisible = true
-                selectedStartStation = null // Reset selection while typing
+                selectedStartStation = null
                 Log.d("SearchActivity", "Start query changed: $startQuery")
             },
-            placeholder = { Text("Start typing a station...") },
+            placeholder = { Text(stringResource(R.string.startTyping)) },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true
         )
@@ -251,14 +271,14 @@ fun SearchScreen() {
                 }
             }
         } else if (startQuery.isNotEmpty() && startSuggestions.isEmpty()) {
-            Text("No results found", color = Color.Gray)
+            Text(stringResource(R.string.notfound), color = Color.Gray)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         // End Station selection
         Text(
-            text = "Select End Station",
+            text = stringResource(R.string.endStation),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(bottom = 4.dp)
         )
@@ -267,10 +287,10 @@ fun SearchScreen() {
             onValueChange = {
                 endQuery = it
                 isEndSuggestionsVisible = true
-                selectedEndStation = null // Reset selection while typing
+                selectedEndStation = null
                 Log.d("SearchActivity", "End query changed: $endQuery")
             },
-            placeholder = { Text("Start typing a station...") },
+            placeholder = { Text(stringResource(R.string.startTyping)) },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true
         )
@@ -292,10 +312,22 @@ fun SearchScreen() {
                 }
             }
         } else if (endQuery.isNotEmpty() && endSuggestions.isEmpty()) {
-            Text("No results found", color = Color.Gray)
+            Text(stringResource(R.string.notfound), color = Color.Gray)
         }
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Route Summary (if available)
+        routeSummary?.let {
+            Text(
+                text = it,
+                style = MaterialTheme.typography.bodySmall,
+                color = Color.Gray,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Route option buttons
         Row(
@@ -306,14 +338,26 @@ fun SearchScreen() {
                 onClick = {
                     Log.d("SearchActivity", "Shortest Route clicked. Start: ${selectedStartStation?.stopName}, End: ${selectedEndStation?.stopName}")
                     if (selectedStartStation != null && selectedEndStation != null) {
-                        val intent = Intent(context, RoutesActivity::class.java).apply {
-                            putExtra("START_STATION_ID", selectedStartStation?.stopId)
-                            putExtra("START_STATION_NAME", selectedStartStation?.stopName)
-                            putExtra("DEST_STATION_ID", selectedEndStation?.stopId)
-                            putExtra("DEST_STATION_NAME", selectedEndStation?.stopName)
-                            putExtra("ROUTE_OPTION", "SHORTEST")
+                        isLoading = true
+                        (context as SearchActivity).lifecycleScope.launch {
+                            val routeOption = "SHORTEST"
+                            val intent = Intent(context, RoutesActivity::class.java).apply {
+                                putExtra("START_STATION_ID", selectedStartStation?.stopId)
+                                putExtra("START_STATION_NAME", selectedStartStation?.stopName)
+                                putExtra("DEST_STATION_ID", selectedEndStation?.stopId)
+                                putExtra("DEST_STATION_NAME", selectedEndStation?.stopName)
+                                putExtra("ROUTE_OPTION", routeOption)
+                            }
+                            context.startActivity(intent)
+                            isLoading = false
+                            // Clear suggestions and reset queries after navigation
+                            startQuery = ""
+                            endQuery = ""
+                            startSuggestions = emptyList()
+                            endSuggestions = emptyList()
+                            isStartSuggestionsVisible = true
+                            isEndSuggestionsVisible = true
                         }
-                        context.startActivity(intent)
                     } else {
                         Toast.makeText(context, "Please select both stations", Toast.LENGTH_SHORT).show()
                     }
@@ -322,27 +366,44 @@ fun SearchScreen() {
                 modifier = Modifier
                     .weight(1f)
                     .height(48.dp)
-                    .padding(end = 8.dp)
+                    .padding(end = 8.dp),
+                enabled = !isLoading
             ) {
-                Text(
-                    text = "Shortest Route",
-                    fontSize = 14.sp,
-                    color = Color.White
-                )
+                if (isLoading) {
+                    CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
+                } else {
+                    Text(
+                        text = stringResource(R.string.shortestRoute),
+                        fontSize = 14.sp,
+                        color = Color.White
+                    )
+                }
             }
 
             Button(
                 onClick = {
                     Log.d("SearchActivity", "Min Interchange clicked. Start: ${selectedStartStation?.stopName}, End: ${selectedEndStation?.stopName}")
                     if (selectedStartStation != null && selectedEndStation != null) {
-                        val intent = Intent(context, RoutesActivity::class.java).apply {
-                            putExtra("START_STATION_ID", selectedStartStation?.stopId)
-                            putExtra("START_STATION_NAME", selectedStartStation?.stopName)
-                            putExtra("DEST_STATION_ID", selectedEndStation?.stopId)
-                            putExtra("DEST_STATION_NAME", selectedEndStation?.stopName)
-                            putExtra("ROUTE_OPTION", "MIN_INTERCHANGE")
+                        isLoading = true
+                        (context as SearchActivity).lifecycleScope.launch {
+                            val routeOption = "MIN_INTERCHANGE"
+                            val intent = Intent(context, RoutesActivity::class.java).apply {
+                                putExtra("START_STATION_ID", selectedStartStation?.stopId)
+                                putExtra("START_STATION_NAME", selectedStartStation?.stopName)
+                                putExtra("DEST_STATION_ID", selectedEndStation?.stopId)
+                                putExtra("DEST_STATION_NAME", selectedEndStation?.stopName)
+                                putExtra("ROUTE_OPTION", routeOption)
+                            }
+                            context.startActivity(intent)
+                            isLoading = false
+                            // Clear suggestions and reset queries after navigation
+                            startQuery = ""
+                            endQuery = ""
+                            startSuggestions = emptyList()
+                            endSuggestions = emptyList()
+                            isStartSuggestionsVisible = true
+                            isEndSuggestionsVisible = true
                         }
-                        context.startActivity(intent)
                     } else {
                         Toast.makeText(context, "Please select both stations", Toast.LENGTH_SHORT).show()
                     }
@@ -351,13 +412,18 @@ fun SearchScreen() {
                 modifier = Modifier
                     .weight(1f)
                     .height(48.dp)
-                    .padding(start = 8.dp)
+                    .padding(start = 8.dp),
+                enabled = !isLoading
             ) {
-                Text(
-                    text = "Min Interchange",
-                    fontSize = 14.sp,
-                    color = Color.White
-                )
+                if (isLoading) {
+                    CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
+                } else {
+                    Text(
+                        text = stringResource(R.string.minInt),
+                        fontSize = 14.sp,
+                        color = Color.White
+                    )
+                }
             }
         }
     }
