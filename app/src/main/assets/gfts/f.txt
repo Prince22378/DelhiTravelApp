@@ -1,0 +1,268 @@
+station_id, station_name, line, interchange_avl, interchange_id, interchange_desc, station_layout, order, interchanging_station_id, segment_id, split
+207, Samaypur Badli, Yellow, 0, 0, , Elevated, 1, 0, Yellow_Main, 0
+203, Rohini Sector 18_19, Yellow, 0, 0, , Elevated, 2, 0, Yellow_Main, 0
+65, Haiderpur Badli Mor, Yellow, 0, 0, , Elevated, 3, 0, Yellow_Main, 0
+79, Jahangirpuri, Yellow, 0, 0, , Elevated, 4, 0, Yellow_Main, 0
+2, Adarsh Nagar, Yellow, 0, 0, , Elevated, 5, 0, Yellow_Main, 0
+10, Azadpur, Yellow, 1, 2, Yellow-Pink, Elevated, 6, 10-11, Yellow_Main, 0
+136, Model Town, Yellow, 0, 0, , Elevated, 7, 0, Yellow_Main, 0
+55, GTB Nagar, Yellow, 0, 0, , Underground, 8, 0, Yellow_Main, 0
+252, Vishwa Vidyalaya, Yellow, 0, 0, , Underground, 9, 0, Yellow_Main, 0
+250, Vidhan Sabha, Yellow, 0, 0, , Underground, 10, 0, Yellow_Main, 0
+27, Civil Lines, Yellow, 0, 0, , Underground, 11, 0, Yellow_Main, 0
+104, Kashmere Gate, Yellow, 1, 10, Yellow-Red-Violet, Underground, 12, 103-104-105, Yellow_Main, 0
+23, Chandni Chowk, Yellow, 0, 0, , Underground, 13, 0, Yellow_Main, 0
+24, Chawri Bazar, Yellow, 0, 0, , Underground, 14, 0, Yellow_Main, 0
+157, New Delhi, Yellow, 1, 15, Yellow-Airport Express, Underground, 15, 157-158 , Yellow_Main, 0
+195, Rajiv Chowk, Yellow, 1, 17, Yellow-Blue, Underground, 16, 195-196 , Yellow_Main, 0
+179, Patel Chowk, Yellow, 0, 0, , Underground, 17, 0, Yellow_Main, 0
+21, Central Secretariat, Yellow, 1, 4, Yellow-Violet, Underground, 18, 21-22 , Yellow_Main, 0
+44, Udyog Bhawan, Yellow, 0, 0, , Underground, 19, 0, Yellow_Main, 0
+118, Lok Kalyan Marg, Yellow, 0, 0, , Underground, 20, 0, Yellow_Main, 0
+93, Jor Bagh, Yellow, 0, 0, , Underground, 21, 0, Yellow_Main, 0
+35, Dilli Haat - INA, Yellow, 1, 2, Yellow-Pink, Underground, 22, 35-36  , Yellow_Main, 0
+1, AIIMS, Yellow, 0, 0, , Underground, 23, 0, Yellow_Main, 0
+62, Green Park, Yellow, 0, 0, , Underground, 24, 0, Yellow_Main, 0
+67, Hauz Khas, Yellow, 1, 7, Yellow-Magenta, Underground, 25, 67-68, Yellow_Main, 0
+124, Malviya Nagar, Yellow, 0, 0, , Underground, 26, 0, Yellow_Main, 0
+206, Saket, Yellow, 0, 0, , Underground, 27, 0, Yellow_Main, 0
+189, Qutab Minar, Yellow, 0, 0, , Elevated, 28, 0, Yellow_Main, 0
+25, Chhatarpur, Yellow, 0, 0, , Elevated, 29, 0, Yellow_Main, 0
+234, Sultanpur, Yellow, 0, 0, , Elevated, 30, 0, Yellow_Main, 0
+57, Ghitorni, Yellow, 0, 0, , Elevated, 31, 0, Yellow_Main, 0
+6, Arjan Garh, Yellow, 0, 0, , Elevated, 32, 0, Yellow_Main, 0
+63, Guru Dronacharya, Yellow, 0, 0, , Elevated, 33, 0, Yellow_Main, 0
+229, Sikanderpur, Yellow, 1, 19, Yellow-Rapid Metro, Elevated, 34, 229-264, Yellow_Main, 0
+119, MG Road, Yellow, 0, 0, , Elevated, 35, 0, Yellow_Main, 0
+70, IFFCO Chowk, Yellow, 0, 0, , Elevated, 36, 0, Yellow_Main, 0
+64, Millennium City Centre Gurugram, Yellow, 0, 0, , Elevated, 37, 0, Yellow_Main, 0
+122, Majlis Park, Pink, 0, 0, , Elevated, 1, 0, Pink_Main, 0
+11, Azadpur, Pink, 1, 2, Pink-Yellow, Underground, 2, 10-11, Pink_Main, 0
+221, Shalimar Bagh, Pink, 0, 0, , Underground, 3, 0, Pink_Main, 0
+155, Netaji Subhash Place, Pink, 1, 14, Pink-Red, Underground, 4, 154-155, Pink_Main, 0
+220, Shakurpur, Pink, 0, 0, , Elevated, 5, 0, Pink_Main, 0
+187, Punjabi Bagh West, Pink, 1, 16, Pink-Green, Elevated, 6, 187-188, Pink_Main, 0
+51, ESI - Basaidarapur, Pink, 0, 0, , Elevated, 7, 0, Pink_Main, 0
+198, Rajouri Garden, Pink, 1, 1, Pink-Blue, Elevated, 8, 197-198, Pink_Main, 0
+130, Mayapuri, Pink, 0, 0, , Elevated, 9, 0, Pink_Main, 0
+149, Naraina Vihar, Pink, 0, 0, , Underground, 10, 0, Pink_Main, 0
+31, Delhi Cantonment, Pink, 0, 0, , Elevated, 11, 0, Pink_Main, 0
+38, Durgabai Deshmukh South Campus, Pink, 0, 0, , Elevated, 12, 0, Pink_Main, 0
+230, Sir M. Vishweshwaraiah Moti Bagh, Pink, 0, 0, , Elevated, 13, 0, Pink_Main, 0
+17, Bhikaji Cama Place, Pink, 0, 0, , Underground, 14, 0, Pink_Main, 0
+212, Sarojini Nagar, Pink, 0, 0, , Underground, 15, 0, Pink_Main, 0
+36, Dilli Haat - INA, Pink, 1, 2, Pink-Yellow, Underground, 16, 35-36, Pink_Main, 0
+231, South Extension, Pink, 0, 0, , Underground, 17, 0, Pink_Main, 0
+115, Lajpat Nagar, Pink, 1, 12, Pink-Violet, Underground, 18, 114-115, Pink_Main, 0
+251, Vinobapuri, Pink, 0, 0, , Underground, 19, 0, Pink_Main, 0
+9, Ashram, Pink, 0, 0, , Underground, 20, 0, Pink_Main, 0
+210, Sarai Kale Khan - Nizamuddin, Pink, 0, 0, , Underground, 21, 0, Pink_Main, 0
+134, Mayur Vihar-I, Pink, 1, 1, Pink-Blue, Elevated, 22, 133-134, Pink_Main, 0
+132, Mayur Vihar Pocket I, Pink, 0, 0, , Elevated, 23, 0, Pink_Main, 0
+242, Trilokpuri Sanjay Lake, Pink, 0, 0, , Elevated, 24, 0, Pink_Main, 0
+53, East Vinod Nagar - Mayur Vihar-II, Pink, 0, 0, , Elevated, 25, 0, Pink_Main, 0
+125, Mandawali - West Vinod Nagar, Pink, 0, 0, , Elevated, 26, 0, Pink_Main, 0
+72, IP Extension, Pink, 0, 0, , Elevated, 27, 0, Pink_Main, 0
+5, Anand Vihar, Pink, 1, 1, Pink-Blue, Elevated, 28, 4-5, Pink_Main, 0
+101, Karkarduma, Pink, 1, 1, Pink-Blue, Elevated, 29, 100-101, Pink_Main, 0
+99, Karkarduma Court, Pink, 0, 0, , Elevated, 30, 0, Pink_Main, 0
+112, Krishna Nagar, Pink, 0, 0, , Elevated, 31, 0, Pink_Main, 0
+52, East Azad Nagar, Pink, 0, 0, , Elevated, 32, 0, Pink_Main, 0
+254, Welcome, Pink, 1, 14, Pink-Red, Elevated, 33, 253-254, Pink_Main, 0
+78, Jaffrabad, Pink, 0, 0, , Elevated, 34, 0, Pink_Main, 0
+129, Maujpur - Babarpur, Pink, 0, 0, , Elevated, 35, 0, Pink_Main, 0
+58, Gokulpuri, Pink, 0, 0, , Elevated, 36, 0, Pink_Main, 0
+92, Johri Enclave, Pink, 0, 0, , Elevated, 37, 0, Pink_Main, 0
+225, Shiv Vihar, Pink, 0, 0, , Elevated, 38, 0, Pink_Main, 0
+201, Rithala, Red, 0, 0, , Elevated, 1, 0, Red_Main, 0
+204, Rohini West, Red, 0, 0, , Elevated, 2, 0, Red_Main, 0
+202, Rohini East, Red, 0, 0, , Elevated, 3, 0, Red_Main, 0
+182, Pitampura, Red, 0, 0, , Elevated, 4, 0, Red_Main, 0
+111, Kohat Enclave, Red, 0, 0, , Elevated, 5, 0, Red_Main, 0
+154, Netaji Subhash Place, Red, 1, 14, Red-Pink, Elevated, 6, 154-155, Red_Main, 0
+107, Keshav Puram, Red, 0, 0, , Elevated, 7, 0, Red_Main, 0
+98, Kanhaiya Nagar, Red, 0, 0, , Elevated, 8, 0, Red_Main, 0
+74, Inderlok, Red, 1, 8, Red-Green, Elevated, 9, 74-75, Red_Main, 0
+223, Shastri Nagar, Red, 0, 0, , Elevated, 10, 0, Red_Main, 0
+183, Pratap Nagar, Red, 0, 0, , Elevated, 11, 0, Red_Main, 0
+185, Pul Bangash, Red, 0, 0, , Elevated, 12, 0, Red_Main, 0
+241, Tis Hazari, Red, 0, 0, , Elevated, 13, 0, Red_Main, 0
+103, Kashmere Gate, Red, 1, 10, Red-Violet-Yellow, Elevated, 14, 103-104-105, Red_Main, 0
+223, Shastri Park, Red, 0, 0, , Elevated, 15, 0, Red_Main, 0
+215, Seelampur, Red, 0, 0, , At Grade, 16, 0, Red_Main, 0
+253, Welcome, Red, 1, 14, Red-Pink, At Grade, 17, 253-254, Red_Main, 0
+217, Shahdara, Red, 0, 0, , At Grade, 18, 0, Red_Main, 0
+128, Mansarovar Park, Red, 0, 0, , Elevated, 19, 0, Red_Main, 0
+91, Jhilmil, Red, 0, 0, , Elevated, 20, 0, Red_Main, 0
+37, Dilshad Garden, Red, 0, 0, , Elevated, 21, 0, Red_Main, 0
+218, Shaheed Nagar, Red, 0, 0, , Elevated, 22, 0, Red_Main, 0
+191, Raj Bagh, Red, 0, 0, , Elevated, 23, 0, Red_Main, 0
+123, Major Mohit Sharma Rajendra Nagar, Red, 0, 0, , Elevated, 24, 0, Red_Main, 0
+228, Shyam Park, Red, 0, 0, , Elevated, 25, 0, Red_Main, 0
+138, Mohan Nagar, Red, 0, 0, , Elevated, 26, 0, Red_Main, 0
+7, Arthala, Red, 0, 0, , Elevated, 27, 0, Red_Main, 0
+69, Hindon River, Red, 0, 0, , Elevated, 28, 0, Red_Main, 0
+219, Shaheed Sthal, Red, 0, 0, , Elevated, 29, 0, Red_Main, 0
+20, Brigadier Hoshiyar Singh, Green, 0, 0, , Elevated, 1, 0, Green_Main, 0
+14, Bahadurgarh City, Green, 0, 0, , Elevated, 2, 0, Green_Main, 0
+176, Pandit Shree Ram Sharma, Green, 0, 0, , Elevated, 3, 0, Green_Main, 0
+238, Tikri Border, Green, 0, 0, , Elevated, 4, 0, Green_Main, 0
+239, Tikri Kalan, Green, 0, 0, , Elevated, 5, 0, Green_Main, 0
+56, Ghevra, Green, 0, 0, , Elevated, 6, 0, Green_Main, 0
+142, Mundka Industrial Area, Green, 0, 0, , Elevated, 7, 0, Green_Main, 0
+141, Mundka, Green, 0, 0, , Elevated, 8, 0, Green_Main, 0
+193, Rajdhani Park, Green, 0, 0, , Elevated, 9, 0, Green_Main, 0
+148, Nangloi Railway Station, Green, 0, 0, , Elevated, 10, 0, Green_Main, 0
+147, Nangloi, Green, 0, 0, , Elevated, 11, 0, Green_Main, 0
+121, Maharaja Surajmal Stadium, Green, 0, 0, , Elevated, 12, 0, Green_Main, 0
+245, Udyog Nagar, Green, 0, 0, , Elevated, 13, 0, Green_Main, 0
+181, Peeragarhi, Green, 0, 0, , Elevated, 14, 0, Green_Main, 0
+178, Paschim Vihar West, Green, 0, 0, , Elevated, 15, 0, Green_Main, 0
+177, Paschim Vihar East, Green, 0, 0, , Elevated, 16, 0, Green_Main, 0
+120, Madipur, Green, 0, 0, , Elevated, 17, 0, Green_Main, 0
+226, Shivaji Park, Green, 0, 0, , Elevated, 18, 0, Green_Main, 0
+188, Punjabi Bagh West, Green, 1, 16, Green-Pink, Elevated, 19, 187-188, Green_Main, 0
+186, Punjabi Bagh, Green, 0, 0, , Elevated, 20, 0, Green_Main, 0
+8, Ashok Park Main, Green, 0, 0, , Elevated, 21, 0, Green_Main, 1
+213, Satguru Ram Singh Marg, Green, 0, 0, , Elevated, 1, 0, Green_B1, 0
+110, Kirti Nagar, Green, 1, 11, Green-Blue, At-Grade, 2, 109-110, Green_B1, 0
+75, Inderlok, Green, 1, 8, Green-Red, Elevated, 1, 74-75, Green_B2, 0
+113, Krishna Park Extension, Magenta, 0, 0, , Underground, 1, 0, Magenta_Main, 0
+84, Janakpuri West, Magenta, 1, 3, Magenta-Blue, Underground, 2, 83-84, Magenta_Main, 0
+28, Dabri Mor - Janakpuri South, Magenta, 0, 0, , Underground, 3, 0, Magenta_Main, 0
+29, Dashrath Puri, Magenta, 0, 0, , Underground, 4, 0, Magenta_Main, 0
+174, Palam, Magenta, 0, 0, , Underground, 5, 0, Magenta_Main, 0
+205, Sadar Bazaar Cantonment, Magenta, 0, 0, , Elevated, 6, 0, Magenta_Main, 0
+237, Terminal 1-IGI Airport, Magenta, 0, 0, , Underground, 7, 0, Magenta_Main, 0
+222, Shankar Vihar, Magenta, 0, 0, , Elevated, 8, 0, Magenta_Main, 0
+249, Vasant Vihar, Magenta, 0, 0, , Underground, 9, 0, Magenta_Main, 0
+143, Munirka, Magenta, 0, 0, , Underground, 10, 0, Magenta_Main, 0
+190, R. K. Puram, Magenta, 0, 0, , Underground, 11, 0, Magenta_Main, 0
+71, IIT Delhi, Magenta, 0, 0, , Underground, 12, 0, Magenta_Main, 0
+68, Hauz Khas, Magenta, 1, 7, Magenta-Yellow, Underground, 13, 67-68, Magenta_Main, 0
+175, Panchsheel Park, Magenta, 0, 0, , Underground, 15, 0, Magenta_Main, 0
+26, Chirag Delhi, Magenta, 0, 0, , Underground, 16, 0, Magenta_Main, 0
+61, Greater Kailash, Magenta, 0, 0, , Underground, 17, 0, Magenta_Main, 0
+152, Nehru Enclave, Magenta, 0, 0, , Underground, 18, 0, Magenta_Main, 0
+97, Kalkaji Mandir, Magenta, 1, 9, Magenta-Violet, Underground, 19, 96-97, Magenta_Main, 0
+171, Okhla NSIC, Magenta, 0, 0, , Elevated, 20, 0, Magenta_Main, 0
+233, Sukhdev Vihar, Magenta, 0, 0, , Elevated, 21, 0, Magenta_Main, 0
+81, Jamia Millia Islamia, Magenta, 0, 0, , Elevated, 22, 0, Magenta_Main, 0
+172, Okhla Vihar, Magenta, 0, 0, , Elevated, 23, 0, Magenta_Main, 0
+88, Jasola Vihar Shaheen Bagh, Magenta, 0, 0, , Elevated, 24, 0, Magenta_Main, 0
+95, Kalindi Kunj, Magenta, 0, 0, , Elevated, 25, 0, Magenta_Main, 0
+170, Okhla Bird Sanctuary, Magenta, 0, 0, , Elevated, 26, 0, Magenta_Main, 0
+19, Botanical Garden, Magenta, 1, 3, Magenta-Blue, Elevated, 27, 18-19, Magenta_Main, 0
+158, New Delhi, Airport Express, 1, 15, Airport Express-Yellow, Underground, 1, 157-158, Airport_Express_Main, 0
+227, Shivaji Stadium, Airport Express, 0, 0, , Underground, 2, 0, Airport_Express_Main, 0
+34, Dhaula Kuan, Airport Express, 0, 0, , Elevated, 3, 0, Airport_Express_Main, 0
+30, Delhi Aerocity, Airport Express, 0, 0, , Underground, 4, 0, Airport_Express_Main, 0
+258, Airport (T-3), Airport Express, 0, 0, , Underground, 5, 0, Airport_Express_Main, 0
+46, Dwarka Sector 21, Airport Express, 1, 5, Airport Express-Blue, Underground, 6, 45-46, Airport_Express_Main, 0
+257, Yashobhoomi Dwarka Sector - 25, Airport Express, 0, 0, , Underground, 7, 0, Airport_Express_Main, 0
+105, Kashmere Gate, Violet, 1, 10, Violet-Red-Yellow, Underground, 1, 103-104-105, Voilet_Main, 0
+116, Lal Qila, Violet, 0, 0, , Underground, 2, 0, Voilet_Main, 0
+80, Jama Masjid, Violet, 0, 0, , Underground, 3, 0, Voilet_Main, 0
+32, Delhi Gate, Violet, 0, 0, , Underground, 4, 0, Voilet_Main, 0
+73, ITO, Violet, 0, 0, , Underground, 5, 0, Voilet_Main, 0
+127, Mandi House, Violet, 1, 13, Violet-Blue, Underground, 6, 126-127, Voilet_Main, 0
+86, Janpath, Violet, 0, 0, , Underground, 7, 0, Voilet_Main, 0
+22, Central Secretariat, Violet, 1, 4, Violet-Yellow, Underground, 8, 21-22, Voilet_Main, 0
+108, Khan Market, Violet, 0, 0, , Underground, 9, 0, Voilet_Main, 0
+89, Jawaharlal Nehru Stadium, Violet, 0, 0, , Underground, 10, 0, Voilet_Main, 0
+85, Jangpura, Violet, 0, 0, , Underground, 11, 0, Voilet_Main, 0
+114, Lajpat Nagar, Violet, 1, 12, Violet-Pink, Elevated, 12, 114-115, Voilet_Main, 0
+139, Moolchand, Violet, 0, 0, , Elevated, 13, 0, Voilet_Main, 0
+94, Kailash Colony, Violet, 0, 0, , Elevated, 14, 0, Voilet_Main, 0
+153, Nehru Place, Violet, 0, 0, , Elevated, 15, 0, Voilet_Main, 0
+96, Kalkaji Mandir, Violet, 1, 9, Violet-Magenta, Elevated, 16, 96-97, Voilet_Main, 0
+60, Govindpuri, Violet, 0, 0, , Elevated, 17, 0, Voilet_Main, 0
+66, Harkesh Nagar Okhla, Violet, 0, 0, , Elevated, 18, 0, Voilet_Main, 0
+87, Jasola Apollo, Violet, 0, 0, , Elevated, 19, 0, Voilet_Main, 0
+211, Sarita Vihar, Violet, 0, 0, , Elevated, 20, 0, Voilet_Main, 0
+137, Mohan Estate, Violet, 0, 0, , Elevated, 21, 0, Voilet_Main, 0
+243, Tughlakabad Station, Violet, 0, 0, , Elevated, 22, 0, Voilet_Main, 0
+12, Badarpur Border, Violet, 0, 0, , Elevated, 22, 0, Voilet_Main, 0
+209, Sarai, Violet, 0, 0, , Elevated, 23, 0, Voilet_Main, 0
+144, NHPC Chowk, Violet, 0, 0, , Elevated, 24, 0, Voilet_Main, 0
+135, Mewla Maharajpur, Violet, 0, 0, , Elevated, 25, 0, Voilet_Main, 0
+214, Sector 28, Violet, 0, 0, , Elevated, 26, 0, Voilet_Main, 0
+13, Badkal Mor, Violet, 0, 0, , Elevated, 27, 0, Voilet_Main, 0
+173, Old Faridabad, Violet, 0, 0, , Elevated, 28, 0, Voilet_Main, 0
+151, Neelam Chowk Ajronda, Violet, 0, 0, , Elevated, 29, 0, Voilet_Main, 0
+16, Bata Chowk, Violet, 0, 0, , Elevated, 30, 0, Voilet_Main, 0
+54, Escorts Mujesar, Violet, 0, 0, , Elevated, 31, 0, Voilet_Main, 0
+208, Sant Surdas (Sihi), Violet, 0, 0, , Elevated, 32, 0, Voilet_Main, 0
+192, Raja Nahar Singh, Violet, 0, 0, , Elevated, 33, 0, Voilet_Main, 0
+45, Dwarka Sector 21, Blue, 1, 5, Blue-Airport Express, Underground, 1, 45-46, Blue_Main, 0
+47, Dwarka Sector 8, Blue, 0, 0, , Elevated, 2, 0, Blue_Main, 0
+48, Dwarka Sector 9, Blue, 0, 0, , Elevated, 3, 0, Blue_Main, 0
+40, Dwarka Sector 10, Blue, 0, 0, , Elevated, 4, 0, Blue_Main, 0
+41, Dwarka Sector 11, Blue, 0, 0, , Elevated, 5, 0, Blue_Main, 0
+42, Dwarka Sector 12, Blue, 0, 0, , Elevated, 6, 0, Blue_Main, 0
+43, Dwarka Sector 13, Blue, 0, 0, , Elevated, 7, 0, Blue_Main, 0
+44, Dwarka Sector 14, Blue, 0, 0, , Elevated, 8, 0, Blue_Main, 0
+49, Dwarka, Blue, 1, 6, Blue-Grey, Elevated, 9, 49-50, Blue_Main, 0
+39, Dwarka Mor, Blue, 0, 0, , Elevated, 10, 0, Blue_Main, 0
+150, Nawada, Blue, 0, 0, , Elevated, 11, 0, Blue_Main, 0
+247, Uttam Nagar West, Blue, 0, 0, , Elevated, 12, 0, Blue_Main, 0
+246, Uttam Nagar East, Blue, 0, 0, , Elevated, 13, 0, Blue_Main, 0
+83, Janakpuri West, Blue, 1, 3, Blue-Magenta, Elevated, 14, 83-84, Blue_Main, 0
+82, Janakpuri East, Blue, 0, 0, , Elevated, 15, 0, Blue_Main, 0
+240, Tilak Nagar, Blue, 0, 0, , Elevated, 16, 0, Blue_Main, 0
+232, Subhash Nagar, Blue, 0, 0, , Elevated, 17, 0, Blue_Main, 0
+236, Tagore Garden, Blue, 0, 0, , Elevated, 18, 0, Blue_Main, 0
+197, Rajouri Garden, Blue, 1, 1, Blue-Pink, Elevated, 19, 197-198 , Blue_Main, 0
+200, Ramesh Nagar, Blue, 0, 0, , Elevated, 20, 0, Blue_Main, 0
+140, Moti Nagar, Blue, 0, 0, , Elevated, 21, 0, Blue_Main, 0
+109, Kirti Nagar, Blue, 1, 11, Blue-Green, Elevated, 22, 109-110, Blue_Main, 0
+216, Shadipur, Blue, 0, 0, , Elevated, 23, 0, Blue_Main, 0
+180, Patel Nagar, Blue, 0, 0, , Elevated, 24, 0, Blue_Main, 0
+194, Rajendra Place, Blue, 0, 0, , Elevated, 25, 0, Blue_Main, 0
+102, Karol Bagh, Blue, 0, 0, , Elevated, 26, 0, Blue_Main, 0
+90, Jhandewalan, Blue, 0, 0, , Elevated, 27, 0, Blue_Main, 0
+199, Ramakrishna Ashram Marg, Blue, 0, 0, , Elevated, 28, 0, Blue_Main, 0
+196, Rajiv Chowk, Blue, 1, 17, Blue-Yellow, Underground, 29, 195-196, Blue_Main, 0
+15, Barakhamba Road, Blue, 0, 0, , Underground, 30, 0, Blue_Main, 0
+126, Mandi House, Blue, 1, 13, Blue-Violet, Underground, 31, 126-127, Blue_Main, 0
+235, Supreme Court, Blue, 0, 0, , Elevated, 32, 0, Blue_Main, 0
+77, Indraprastha, Blue, 0, 0, , Elevated, 33, 0, Blue_Main, 0
+255, Yamuna Bank, Blue, 0, 0, Blue, At-Grade, 34, 34-, Blue_Main, 1
+117, Laxmi Nagar, Blue, 0, 0, , Elevated, 1, 0, Blue_B1, 0
+159, Nirman Vihar, Blue, 0, 0, , Elevated, 2, 0, Blue_B1, 0
+184, Preet Vihar, Blue, 0, 0, , Elevated, 3, 0, Blue_B1, 0
+100, Karkarduma, Blue, 1, 1, Blue-Pink, Elevated, 4, 100-101, Blue_B1, 0
+4, Anand Vihar, Blue, 1, 1, Blue-Pink, Elevated, 5, 4-5, Blue_B1, 0
+106, Kaushambi, Blue, 0, 0, , Elevated, 6, 0, Blue_B1, 0
+248, Vaishali, Blue, 0, 0, , Elevated, 6, 0, Blue_B1, 0
+3, Akshardham, Blue, 0, 0, , Elevated, 1, 0, Blue_B2, 0
+133, Mayur Vihar-I, Blue, 1, 1, Blue-Pink, Elevated, 2, 133-134, Blue_B2, 0
+131, Mayur Vihar Extension, Blue, 0, 0, , Elevated, 3, 0, Blue_B2, 0
+156, New Ashok Nagar, Blue, 0, 0, , Elevated, 4, 0, Blue_B2, 0
+162, Noida Sector 15, Blue, 0, 0, , Elevated, 5, 0, Blue_B2, 0
+163, Noida Sector 16, Blue, 0, 0, , Elevated, 6, 0, Blue_B2, 0
+164, Noida Sector 18, Blue, 0, 0, , Elevated, 7, 0, Blue_B2, 0
+18, Botanical Garden, Blue, 1, 3, Blue-Magenta, Elevated, 8, 18-19, Blue_B2, 0
+59, Golf Course, Blue, 0, 0, , Elevated, 9, 0, Blue_B2, 0
+160, Noida City Centre, Blue, 0, 0, , Elevated, 10, 0, Blue_B2, 0
+165, Noida Sector 34, Blue, 0, 0, , Elevated, 11, 0, Blue_B2, 0
+166, Noida Sector 52, Blue, 0, 0, , Elevated, 12, 0, Blue_B2, 0
+168, Noida Sector 61, Blue, 0, 0, , Elevated, 13, 0, Blue_B2, 0
+167, Noida Sector 59, Blue, 0, 0, , Elevated, 14, 0, Blue_B2, 0
+169, Noida Sector 62, Blue, 0, 0, , Elevated, 15, 0, Blue_B2, 0
+161, Noida Electronic City, Blue, 0, 0, , Elevated, 16, 0, Blue_B2, 0
+259, Sector-55-56, Rapid Metro, 0, 0, , Elevated, 1, 0, Rapid_Main, 0
+260, Sector-54 Chowk, Rapid Metro, 0, 0, , Elevated, 2, 0, Rapid_Main, 0
+261, Sector-53-54, Rapid Metro, 0, 0, , Elevated, 3, 0, Rapid_Main, 0
+262, Sector-42-43, Rapid Metro, 0, 0, , Elevated, 4, 0, Rapid_Main, 0
+263, Phase-1, Rapid Metro, 0, 0, , Elevated, 5, 0, Rapid_Main, 0
+264, Sikanderpur, Rapid Metro, 1, 19,Rapid Metro-Yellow , Elevated, 6, 229-264, Rapid_Main, 0
+265, Phase-2, Rapid Metro, 0, 0, , Elevated, 7, 0, Rapid_Main, 0
+266, Phase-3, Rapid Metro, 0, 0, , Elevated, 8, 0, Rapid_Main, 0
+267, Moulsari Avenue, Rapid Metro, 0, 0, , Elevated, 9, 0, Rapid_Main, 0
+268, Cyber City, Rapid Metro, 0, 0, , Elevated, 10, 0, Rapid_Main, 0
+269, Belvedere Towers, Rapid Metro, 0, 0, , Elevated, 11, 0, Rapid_Main, 0
+50, Dwarka, Grey, 1, 6, Grey-Blue, Elevated, 1, 49-50, Grey_Main, 0
+146, Nangli, Grey, 0, 0, , Elevated, 2, 0, Grey_Main, 0
+145, Najafgarh, Grey, 0, 0, , Underground, 3, 0, Grey_Main, 0
+33, Dhansa Bus Stand, Grey, 0, 0, , Underground, 4, 0, Grey_Main, 0

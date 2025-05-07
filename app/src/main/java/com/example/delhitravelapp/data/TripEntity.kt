@@ -8,6 +8,12 @@ import androidx.room.PrimaryKey
 data class TripEntity(
     @PrimaryKey val tripId: String,
     val routeId: String,
-    val serviceId: String,
-    val shapeId: String?
+    val serviceId: String? = null,
+    val tripHeadsign: String? = null,
+    val tripShortName: String? = null,
+    val directionId: Int? = null,
+    val blockId: String? = null,
+    val shapeId: String? = null,
+    val wheelchairAccessible: Int? = null,
+    val bikesAllowed: Int? = null
 )

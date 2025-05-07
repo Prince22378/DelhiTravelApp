@@ -16,4 +16,7 @@ interface TripDao {
 
     @Query("DELETE FROM trips")
     suspend fun deleteAll()
+    // Add this new query
+    @Query("SELECT * FROM trips")
+    suspend fun getAllTrips(): List<TripEntity>
 }

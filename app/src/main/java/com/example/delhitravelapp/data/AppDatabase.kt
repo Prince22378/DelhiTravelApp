@@ -13,7 +13,7 @@ import androidx.room.RoomDatabase
         TripEntity::class,
         StopTimeEntity::class
     ],
-    version = 1,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

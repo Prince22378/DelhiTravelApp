@@ -28,4 +28,8 @@ interface StationDao {
     @Query("SELECT * FROM stations WHERE stopName LIKE '%' || :query || '%' ORDER BY stopName")
     fun searchStations(query: String): Flow<List<StationEntity>>
 
+    // New query to fetch stations by line (useful for route calculation)
+    @Query("SELECT * FROM stations WHERE line = :line ORDER BY `order`")
+    suspend fun getStationsByLine(line: String): List<StationEntity>
+
 }

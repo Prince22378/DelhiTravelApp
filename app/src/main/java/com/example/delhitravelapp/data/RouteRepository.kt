@@ -9,4 +9,6 @@ class RouteRepository(private val dao: RouteDao) {
     suspend fun getRoutesByIds(ids: List<String>) =
         dao.getRoutesByIds(ids)
     fun allRoutes(): Flow<List<RouteEntity>> = dao.allRoutes()
+    suspend fun getAllRoutes(): List<RouteEntity> = dao.getAllRoutes()
+    suspend fun deleteAll() = dao.deleteAll()
 }

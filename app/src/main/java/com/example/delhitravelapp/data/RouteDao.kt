@@ -18,6 +18,9 @@ interface RouteDao {
     // example: fetch all routes for display
     @Query("SELECT * FROM routes ORDER BY routeShortName")
     fun allRoutes(): Flow<List<RouteEntity>>
+    // Add this new query
+    @Query("SELECT * FROM routes")
+    suspend fun getAllRoutes(): List<RouteEntity>
 
     @Query("SELECT * FROM routes WHERE routeId IN(:ids)")
     suspend fun getRoutesByIds(ids: List<String>): List<RouteEntity>

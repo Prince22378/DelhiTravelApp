@@ -10,6 +10,13 @@ data class StopTimeEntity(
     val tripId: String,
     val stopId: String,
     val stopSequence: Int,
-    val arrivalTime: String?,
-    val departureTime: String?
+    val arrivalTime: String? = null,
+    val departureTime: String? = null,
+    val stopHeadsign: String? = null,
+    val pickupType: Int? = null,
+    val dropOffType: Int? = null,
+    val shapeDistTraveled: Double? = null,
+    val timepoint: Int? = null,
+    val continuousPickup: Int? = null,
+    val continuousDropOff: Int? = null
 )
