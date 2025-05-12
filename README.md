@@ -1,7 +1,6 @@
 # DelhiTravelApp (DTA)
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## Introduction
 DelhiTravelApp (DTA) is your ultimate companion for navigating the Delhi Metro network. Designed with usability and accessibility in mind, the app offers real-time metro updates, location tracking, and a unique user interface tailored to enhance the travel experience. Whether you’re a daily commuter or a first-time traveler, DTA is here to make your metro journey seamless and efficient.
