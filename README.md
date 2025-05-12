@@ -93,9 +93,9 @@ Follow these steps to set up the app on your local device:
 ---
 
 ## Upcoming Features
-We’re constantly working to improve the DelhiTravelApp. Here are some features planned for future updates:
+Some of features planned for future updates / future versions :
 - Integration with the Delhi Metro card recharge system.
-- - Locker availablility & notification setting.
+- Locker availablility & notification setting.
 - Line Interchange Naviagation.
 - ....
 ---
