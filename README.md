@@ -90,6 +90,11 @@ Follow these steps to set up the app on your local device:
 
 ## SS
 
+### Home Page
+![Home Page](images/homepage.png)
+
+### Profile Page
+![Profile Page](images/profile.png)
 ---
 
 ## Upcoming Features
