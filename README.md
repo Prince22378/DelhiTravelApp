@@ -90,15 +90,15 @@ Follow these steps to set up the app on your local device:
 
 # Screenshots
 
-| Home Page | Profile Page |
+| Route search page | Metro Lines details |
 |-----------|-------------|
 | ![Screenshot 2025-06-04 024303](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20024303.png) | ![Screenshot 2025-06-04 025043](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20025043.png) |
 
-| Screenshot 1 | Screenshot 2 |
+| Station Search | On time Arrival i |
 |--------------|--------------|
 | ![Screenshot 2025-06-04 025113](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20025113.png) | ![Screenshot 2025-06-04 025129](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20025129.png) |
 
-| Screenshot 3 | Screenshot 4 |
+| On time Arrival ii | On time Arrival iii |
 |--------------|--------------|
 | ![Screenshot 2025-06-04 025225](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20025225.png) | ![Screenshot 2025-06-04 025247](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20025247.png) |
 
