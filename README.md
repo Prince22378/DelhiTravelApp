@@ -88,13 +88,20 @@ Follow these steps to set up the app on your local device:
 
 ---
 
-## SS
+# Screenshots
 
-### Home Page
-![Home Page](images/homepage.png)
+| Home Page | Profile Page |
+|-----------|-------------|
+| ![Screenshot 2025-06-04 024303](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20024303.png) | ![Screenshot 2025-06-04 025043](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20025043.png) |
 
-### Profile Page
-![Profile Page](images/profile.png)
+| Screenshot 1 | Screenshot 2 |
+|--------------|--------------|
+| ![Screenshot 2025-06-04 025113](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20025113.png) | ![Screenshot 2025-06-04 025129](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20025129.png) |
+
+| Screenshot 3 | Screenshot 4 |
+|--------------|--------------|
+| ![Screenshot 2025-06-04 025225](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20025225.png) | ![Screenshot 2025-06-04 025247](https://github.com/Prince22378/DelhiTravelApp/blob/main/Screenshots/Screenshot%202025-06-04%20025247.png) |
+
 ---
 
 ## Upcoming Features
